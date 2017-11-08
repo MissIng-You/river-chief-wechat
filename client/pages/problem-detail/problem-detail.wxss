@@ -1,0 +1,170 @@
+/* reset font-size: 10px */
+html, body, page {
+  font-size: 62.5%;
+}
+
+/* bg-white bg-light-white wxss */
+.bg-white {
+  background-color: #fff;
+}
+.bg-light-white {
+  background-color: #f6f6ff;
+}
+
+/* text-ellipsis wxss */
+.text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* card component wxss */
+@import "../../components/card/card.wxss";
+
+/* card-empty component wxss */
+@import "../../components/card/card-empty.wxss";
+
+/* avator component wxss */
+@import "../../components/avator/avator.wxss";
+
+/* hot component wxss */
+@import "../../components/hot/hot.wxss";
+
+/* hot-header component wxss */
+@import "../../components/hot/hot-header.wxss";
+
+/* hot-address component wxss */
+@import "../../components/hot/hot-address.wxss";
+
+/* hot-address component wxss */
+@import "../../components/hot/hot-image.wxss";
+
+/* tag component wxss */
+@import "../../components/tag/tag.wxss";
+
+/* icon component wxss */
+@import "../../components/icon/icon.wxss";
+
+/* problem wxss */
+.problem {
+  background-color: #efeff4;
+}
+/* .problem-detail */
+.problem .problem-detail {
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+.problem-detail .tags-wrap {
+  padding: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.problem-detail .content {
+  font-size: 1.4em;
+  padding: 0 20rpx;
+}
+.problem-detail .image-list-wrap {
+  padding: 20rpx;
+}
+.problem-detail .problem-address {
+  padding: 0 20rpx 20rpx 20rpx;
+}
+/* problem-solve */
+.problem .problem-solve {
+  position: relative;
+}
+.problem-solve .arrow-top {
+  position: absolute;
+  top: -10rpx;
+  left: 50%;
+  margin-left: -20rpx;
+  display: inline-block;
+  content: "";
+  width: 0;
+  height: 0;
+  border-width: 20rpx;
+  border-style: solid;
+  border-color: transparent;
+  border-bottom-color: #fff;
+}
+
+/* timeline wxss */
+.timeline {
+  padding: 20rpx;
+  border-bottom: 1px solid #efeff4;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-around;
+}
+/* timeline-header */
+.timeline .timeline-header {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timeline-header .timer {
+  display: inline-block;
+  text-align: center;
+}
+/* timeline-body */
+.timeline .timeline-body {
+  width: 80%;
+  position: relative;
+}
+.timeline-body .arrow-left::before {
+  position: absolute;
+  top: 20rpx;
+  left: -35rpx;
+  display: inline-block;
+  content: "";
+  width: 0;
+  height: 0;
+  border-width: 20rpx;
+  border-color: transparent;
+  border-right-color:#46bde2;
+  border-style: solid;
+}
+/* timeline-body-inner */
+.timeline-body .timeline-body-inner {
+  background-color: #46bde2;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  position: relative;
+}
+.timeline-body .content {
+  display: inline-block;
+  font-size: 1.4em;
+  color: #fff;
+}
+
+/* image-list wxss */
+.image-list {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.image-list .hot-image + .hot-image {
+  margin-left: 20rpx;
+}
+/* image-list-small */
+.image-list.image-list-small {
+  padding: 5rpx;
+  background-color: #46bde2;
+}
+.image-list-small .hot-image + .hot-image {
+  margin-left: 5rpx;
+}
+
+/* hot-list wxss */
+.hot-list {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+.hot-list + .hot-list {
+  margin-top: 20rpx;
+}
+
+

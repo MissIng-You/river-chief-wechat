@@ -1,0 +1,11 @@
+/* card-title wxss */
+.card-title {
+  padding: 20rpx;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 1.2em;
+  line-height: 1.0em;
+}
+.card-title .title-mark {
+    color: #46bde2;
+    padding: 0 10rpx 0 10rpx;
+}

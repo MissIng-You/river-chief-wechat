@@ -1,0 +1,61 @@
+/* avator wxss */
+.avator {
+  display: flex;
+  flex-direction: row;
+}
+.avator .avator-img {
+  border-radius: 50%;
+  background-color:#e0e0e0;
+}
+.avator .avator-title {
+  font-size: 1.4em;
+  line-height: 100rpx;
+  color: #353535;
+  margin-left: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 240rpx;
+}
+/* avator avator-horizontal theme */
+.avator.avator-horizontal {
+  flex-direction: column;
+  align-items: center;
+}
+.avator.avator-horizontal .avator-title {
+  margin-left: 0;
+  font-size: 1.0em;
+  max-width: 150rpx;
+}
+/* avator-large */
+.avator.avator-large {
+  border-radius: 50%;
+  border: 2px solid #46bde2;
+  width: 100rpx;
+  height: 100rpx;
+}
+.avator.avator-large .avator-img {
+  width: 100rpx;
+  height: 100rpx;
+}
+.avator.avator-large .avator-title {
+  line-height: 100rpx;
+}
+/* avator-small */
+.avator.avator-small .avator-img {
+  width: 60rpx;
+  height: 60rpx;
+}
+.avator.avator-small .avator-title {
+  line-height: 60rpx;
+}
+
+/* avator-xsmall */
+.avator.avator-xsmall .avator-img {
+  width: 40rpx;
+  height: 40rpx;
+}
+.avator.avator-xsmall .avator-title {
+  line-height: 40rpx;
+  font-size: 1.0em;
+}

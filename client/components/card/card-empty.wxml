@@ -1,0 +1,5 @@
+<template name="card-empty">
+  <view class="card-empty">
+    <view class="card-empty-inner">{{content || '没有数据!'}}</view>
+  </view>
+</template>

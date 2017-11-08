@@ -1,0 +1,80 @@
+<import src="../../components/icon/icon.wxml" />
+<import src="../../components/radio/radio.wxml" />
+<import src="../../components/checkbox/checkbox.wxml" />
+<import src="../../components/hot/hot-address.wxml" />
+
+<!-- wxs -->
+<wxs module="validation">
+  var isChecked = function (checkes, value) {
+    if(!checkes || !checkes.length || !value) return false;
+    var filter = checkes.filter(function(item) {
+      return item === value;
+    });
+    return filter && filter.length ? true : false;
+  };
+  
+  module.exports = {
+    isChecked: isChecked
+  }
+</wxs>
+
+<scroll-view soroll-y class="problem-report">
+  <form bindsubmit="onSubmit">
+    <!-- <view class="problem-map">
+      <map id="map" longitude="104.06613" latitude="30.5721" scale="16" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location></map>
+      <view class="location">
+        <template is="hot-address" data="{{address: address, isWhite: true}}" />
+      </view>
+    </view> -->
+    <view class="problem-item">
+      <view class="zone">
+        <text class="label">选择位置</text>
+        <text name="address" class="input" bindtap="selectAddress">{{address ? address : '请选择位置'}}</text>
+      </view>
+    </view>
+    <picker class="problem-item" bindchange="selectArea" name="areaIndex"
+      value="{{selectAreaIndex}}" range="{{areas}}" range-key="name">
+      <view class="zone">
+        <text class="label">行政区/县</text>
+        <text class="input">{{selectAreaIndex != null ? areas[selectAreaIndex].name : '请选择'}}</text>
+      </view>
+    </picker>
+    <picker class="problem-item" bindchange="selectReach" name="reachIndex"
+      value="{{selectReachIndex}}" range="{{reaches}}" range-key="name">
+      <view class="zone">
+        <text class="label">附近河段</text>
+        <text class="input">{{selectReachIndex != null ? reaches[selectReachIndex].name : '请选择'}}</text>
+      </view>
+    </picker>
+    <view class="problem-type">
+      <text class="label">问题类型</text>
+      <view class="input">
+        <radio-group class="radio-list" bindchange="selectMainItem" name="mainItem">
+          <template is="radio" wx:for="{{mainItems}}" wx:key="{{item.key}}" 
+            data="{{key: item.key, value: item.value, checked: selectMainIndex}}" />
+        </radio-group>
+        <checkbox-group class="checkbox-list" bindchange="selectSubItem" name="subItem">
+          <template is="checkbox" wx:for="{{subItems[selectMainIndex]}}" wx:key="{{item.value}}" data="{{key: item.value, value: item.value, checked: validation.isChecked(selectSubIndex,item.value)}}" />
+        </checkbox-group>
+      </view>
+    </view>
+    <view class="problem-describe">
+      <view class="describe">问题描述</view>
+      <textarea name="selectDescribe" class="textarea" maxlength="200" placeholder="输入问题描述，不超过200字（非必填）" />
+    </view>
+    <view class="image-list">
+      <view wx:if="{{previewUrls && previewUrls.length <= 3}}" class="add-image" bindtap="doUpload">
+        <template is="icon" data="{{icon: '../../assets/img/add-empty.png', classes: 'icon-large'}}" />
+      </view>
+      <block wx:for="{{previewUrls}}" wx:key="{{item}}">
+        <view class="image-item" bindtap="preview"
+          data-urls="{{previewUrls}}" data-url="{{item}}">
+          <image class="image" src="{{item}}" mode="aspectFill" />
+        </view>
+      </block>
+    </view>
+    <view class="problem-submit">
+      <button form-type="submit" class="button-primary">确定</button>
+    </view>
+  </form>
+</scroll-view>

@@ -1,0 +1,21 @@
+/* icon wxss */
+.icon {
+  position:relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.icon .icon-inner {
+  width: 25rpx;
+  height: 25rpx;
+}
+/* icon-normal */
+.icon.icon-normal .icon-inner {
+  width: 50rpx;
+  height: 50rpx;
+}
+/* icon-large */
+.icon.icon-large .icon-inner {
+  width: 75rpx;
+  height: 75rpx;
+}

@@ -1,0 +1,12 @@
+<import src="../icon/icon.wxml" />
+
+<template name="card-header">
+  <view class="card-header">
+    <view wx:if="{{icon}}" class="title-wrap">
+      <template is="icon" data="{{icon: icon, classes: classes}}" />
+      <text class="title">{{title}}</text>
+    </view>
+    <text wx:if="{{!icon}}" class="title">{{title}}</text>
+    <text wx:if="{{more}}" class="more">{{more + '>'}}</text>
+  </view>
+</template>

@@ -1,0 +1,17 @@
+{
+  "name": "river-chief-wechat-app",
+  "version": "1.0.0",
+  "description": "河长制小程序解决方案",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/missing-you/river-chief-wechat-app.git"
+  },
+  "keywords": [],
+  "author": "Pionner",
+  "license": "MIT",
+  "dependencies": {
+    "wafer2-client-sdk": "^1.0.0",
+    "timeago.js": "^3.0.0"
+  }
+}

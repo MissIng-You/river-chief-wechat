@@ -1,0 +1,7 @@
+<template name="hot-image">
+  <view data-urls="{{urls}}" data-url="{{url}}" bindtap="preview"
+    class="{{isBackground ? 'hot-image-bg' : 'hot-image'}}">
+    <image class="image" src="{{url}}" lazy-load="true" mode="aspectFill"/>
+    <text wx:if="{{title}}" class="title">{{title}}</text>
+  </view>
+</template>

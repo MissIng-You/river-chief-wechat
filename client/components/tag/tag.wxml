@@ -1,0 +1,8 @@
+<template name="tag-list">
+  <view class="hot-tags {{classes}}">
+    <text class="tag">{{mainTag}}</text>
+    <block wx:for="{{tags}}" wx:key="{{item}}">
+      <text class="tag tag-divider">{{item}}</text>
+    </block>
+  </view>
+</template>

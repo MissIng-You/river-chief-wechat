@@ -1,0 +1,75 @@
+<import src="../../components/avator/avator.wxml" />
+<import src="../../components/hot/hot.wxml" />
+<import src="../../components/hot/hot-header.wxml" />
+<import src="../../components/hot/hot-address.wxml" />
+<import src="../../components/hot/hot-image.wxml" />
+<import src="../../components/card/card.wxml" />
+<import src="../../components/card/card-empty.wxml" />
+<import src="../../components/tag/tag.wxml" />
+<import src="../../components/icon/icon.wxml" />
+
+<!-- wxs -->
+<wxs src="../../components/hot/hot-describe.wxs" module="hot" />
+
+<view class="problem">
+  <template is="hot-image" 
+    data="{{title: details.title, url: '../../assets/img/problem-detail-bg.png', isBackground: true}}" />
+
+  <view class="problem-detail">
+    <template is="hot-header" data="{{title: '问题描述', avator: {url: details.url, title: details.user, classes: 'avator-xsmall'}, timer: details.timer}}" />
+    <view class="tags-wrap">
+      <template is="tag-list" data="{{mainTag:hot.getMainTag(details.describe), tags: hot.getSubTag(details.describe)}}" />
+    </view>
+    <text class="content">{{hot.getDescribe(details.describe)}}</text>
+    <view class="image-list-wrap">
+      <scroll-view scroll-x class="bg-white">
+        <view class="image-list">
+          <template wx:for="{{details.attachments}}" wx:key="{{item.id}}"
+              is="hot-image" data="{{ url: item.url, urls: details.attachments }}" />
+        </view>
+      </scroll-view>
+    </view>
+    <view class="problem-address">
+      <template is="hot-address" data="{{address: details.address}}" />
+    </view>
+  </view>
+
+  <scroll-view wx:if="{{solveDetails && solveDetails.length}}" class="problem-solve">
+    <view class="arrow-top"></view>
+    <template is="card-header" 
+      data="{{icon: '../../assets/img/solve-check.png', classes: 'icon-normal', title: '处理结果'}}" />
+    
+    <scroll-view scroll-y>
+      <view class="bg-light-white">
+        <block wx:if="{{solveDetails && solveDetails.length}}"
+          wx:for="{{solveDetails}}" wx:key="{{item.id}}">
+          <view class="timeline">
+            <view class="timeline-header">
+              <template is="avator" data="{{url: item.url, title: item.user, classes: 'avator-horizontal avator-small' }}" />
+              <text class="timer">{{item.timer}}</text>
+            </view>
+            <view class="timeline-body">
+              <view class="arrow-left"></view>
+              <view class="timeline-body-inner">
+                <text class="content">{{item.content}}</text>
+                <view wx:if="{{item.attachments}}" class="image-list-wrap">
+                  <scroll-view scroll-x class="bg-white">
+                    <view class="image-list image-list-small">
+                      <template wx:for="{{item.attachments}}" 
+                        wx:key="{{attach.id}}" wx:for-item="attach"
+                        is="hot-image" data="{{ url: attach.url, urls: item.attachments }}" />
+                    </view>
+                  </scroll-view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <template wx:if="{{!solveDetails || !solveDetails.length}}" 
+      is="card-empty" data="{{content:'没有处理记录!'}}" />
+      </view>
+    </scroll-view>
+    
+  </scroll-view>
+</view>
+

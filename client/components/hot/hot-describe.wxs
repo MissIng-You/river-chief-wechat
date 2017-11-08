@@ -1,0 +1,33 @@
+// <!--hot-describe wxs -->
+
+var getSplitDescribe = function (val) {
+  if (!val) return '';
+  var regexp = getRegExp('(?:;)', 'g');
+  var valOfArray = val.split(regexp, 3);
+  return valOfArray;
+};
+
+var getMainTag = function (val) {
+  var mainTag = getSplitDescribe(val);
+  if (mainTag.length !== 3) return '';
+  return mainTag[0];
+};
+
+var getSubTag = function (val) {
+  var subTag = getSplitDescribe(val);
+  if (subTag.length !== 3) return '';
+  return subTag[1].split('|');
+};
+
+var getDescribe = function (val) {
+  var desc = getSplitDescribe(val);
+  if (desc.length === 0) return '';
+  if (desc.length === 1) return desc[0];
+  return desc[2];
+};
+
+module.exports = {
+  getMainTag: getMainTag,
+  getSubTag: getSubTag,
+  getDescribe: getDescribe
+}

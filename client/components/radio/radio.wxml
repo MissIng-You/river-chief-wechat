@@ -1,0 +1,6 @@
+<template name="radio">
+  <label class="radio">
+    <radio value="{{key}}" />
+    <text class="{{checked === key ? 'selected' : 'normal'}}">{{value}}</text>
+  </label>
+</template>

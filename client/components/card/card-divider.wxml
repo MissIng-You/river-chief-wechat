@@ -1,0 +1,6 @@
+<template name="card-divider">
+  <view class="card-divider">
+    <text class="card-left">{{title}}</text>
+    <text class="card-right">{{subtitle}}</text>
+  </view>
+</template>

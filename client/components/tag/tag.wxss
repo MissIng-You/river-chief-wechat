@@ -1,0 +1,34 @@
+/* hot-tags wxss */
+.hot-tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  position: relative;
+  font-size: 1.0em;
+}
+/* hot-tags tag */
+.hot-tags .tag {
+  color: #fff;
+  background-color: #46bde2;
+  padding: 5rpx 20rpx;
+  border-radius: 5rpx;
+}
+/* hot-tags .tag-divider */
+.hot-tags .tag-divider {
+  background-color: #fff;
+  color: #46bde2;
+  padding: 5rpx 20rpx;
+  display: inline-block;
+  position: relative;
+}
+.hot-tags .tag-divider + .tag-divider::after {
+  position: absolute;
+  display: inline-block;
+  content: "";
+  top: 25%;
+  left: 0;
+  width: 1px;
+  height: 50%;
+  background-color: #46bde2;
+}

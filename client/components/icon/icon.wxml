@@ -1,0 +1,5 @@
+<template name="icon">
+  <view class="icon {{classes}}">
+    <image class="icon-inner" src="{{icon}}" lazy-load="true" mode="aspectFit"/>
+  </view>
+</template>

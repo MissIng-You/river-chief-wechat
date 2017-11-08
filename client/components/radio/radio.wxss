@@ -1,0 +1,28 @@
+/* radio wxss */
+.radio {
+  /* float: left; */
+  margin-top: 10rpx;
+  padding-bottom: 20rpx;
+}
+.radio radio {
+  opacity: 0;
+}
+.radio .normal {
+  color: #46bde2;
+  border: 1px solid #46bde2;
+  border-radius: 3px;
+  padding: 2px 15rpx 2px 15rpx;
+  margin-left: -29px;
+  margin-right: 20rpx;
+  font-size: 1.0em;
+}
+.radio .selected {
+  color: #fff;
+  border: 1px solid #46bde2;
+  border-radius: 5rpx;
+  padding: 2px 15rpx 2px 15rpx;
+  margin-left: -29px;
+  margin-right: 20rpx;
+  background-color: #46bde2;
+  font-size: 1.0em;
+}

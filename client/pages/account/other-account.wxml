@@ -1,0 +1,60 @@
+<import src="../../components/avator/avator.wxml" />
+<import src="../../components/hot/hot.wxml" />
+<import src="../../components/hot/hot-image.wxml" />
+<import src="../../components/icon/icon.wxml" />
+<import src="../../components/card/card-title.wxml" />
+<import src="../../components/card/card-divider.wxml" />
+<import src="../../components/card/card-empty.wxml" />
+
+<view class="account">
+  <view class="personal">
+    <image class="personal-bg" src="{{'../../assets/img/problem-detail-bg.png'}}" lazy-load="true" mode="aspectFill"/>
+    <view class="personal-head">
+      <image class="head-bg" src="{{userInfo.url}}" lazy-load="true" mode="aspectFit" />
+      <view class="rank">
+        <text wx:if="{{userInfo.rank}}" class="number">{{userInfo.rank || 0}}</text>
+        <text class="desc">{{userInfo.rank ? '本月排名' : '暂无排名'}}</text>
+      </view>
+    </view>
+    <view class="personal-info">
+      <view class="info-content">
+        <view class="info-name">
+          <text>{{userInfo.user}}</text>
+          <template wx:if="{{userInfo.gender == 1}}" is="icon" data="{{icon: '../../assets/img/male.png', classes: 'sex'}}" />
+          <template wx:if="{{userInfo.gender == 2}}" is="icon" data="{{icon: '../../assets/img/female.png', classes: 'sex'}}" />
+          <template wx:if="{{userInfo.isVip}}" is="icon" data="{{icon: '../../assets/img/vip.png', classes: 'appellation'}}" />
+        </view>
+        <view class="info-address">{{userInfo.country || ''}} {{userInfo.province || ''}} {{userInfo.city || ''}}</view>
+        <view class="info-patrol">巡河上报
+          <text>{{userInfo.pollingCount || 0}}</text>次</view>
+      </view>
+    </view>
+  </view>
+  <view class="river">
+    <template is="card-title" data="{{title: 'TA关注的河段', count: rivers && rivers.length || 0}}" />
+    <scroll-view scroll-x>
+      <view class="river-list">
+        <template is="card-divider" wx:if="{{rivers && rivers.length}}"
+          wx:for="{{rivers}}" wx:key="{{reach.id}}" wx:for-item="reach" 
+          data="{{title: reach.riverName, subtitle: reach.reachName}}" />
+        <template wx:if="{{!rivers || !rivers.length}}" is="card-empty" />
+      </view>
+    </scroll-view>
+  </view>
+
+  <scroll-view class="account-scroll">
+    <template is="card-title" data="{{title: 'TA最近的巡河上报', count:pollingTops && pollingTops.length || 0}}" />
+    <scroll-view scroll-y>
+      <view class="bg-light-white">
+        <block wx:for="{{pollingTops}}" wx:key="{{item.id}}">
+          <view class="hot-list">
+            <template is="hot" wx:if="{{pollingTops && pollingTops.length}}"
+              data="{{id: item.id, wechatId: item.wechatId, url: item.attachments && item.attachments[0].url,title: item.title,describe: item.describe, timer: item.timer, address: item.address, solve: item.solve}}" />
+            
+          </view>
+        </block>
+        <template wx:if="{{!pollingTops || !pollingTops.length}}" is="card-empty" />
+      </view>
+    </scroll-view>
+  </scroll-view>
+</view>

@@ -1,0 +1,32 @@
+{
+    "debug": true,
+    "pages": [  
+      
+      "pages/dashboard/dashboard",
+      "pages/account/account",
+      "pages/account/other-account",
+      "pages/problem-report/problem-report",
+      "pages/problem-detail/problem-detail"
+    ],
+    "window": {
+        "backgroundTextStyle": "white",
+        "navigationBarBackgroundColor": "#46bde2",
+        "navigationBarTitleText": "河长制 - 我来巡河",
+        "navigationBarTextStyle": "white"
+    },
+    "tabBar": {
+      "color": "#353535",
+      "selectedColor": "#46bde2",
+      "list":[{
+        "pagePath": "pages/dashboard/dashboard",
+        "iconPath": "assets/img/tabBars/polling-list.png",
+        "selectedIconPath": "assets/img/tabBars/polling-list-active.png",
+        "text": "首页"
+      }, {
+        "pagePath": "pages/account/account",
+        "iconPath": "assets/img/tabBars/user-list.png",
+        "selectedIconPath": "assets/img/tabBars/user-list-active.png",
+        "text": "我的"
+      }]
+    }
+}

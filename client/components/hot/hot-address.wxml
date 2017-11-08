@@ -1,0 +1,9 @@
+<import src="../icon/icon.wxml" />
+
+<template name="hot-address">
+  <view class="hot-address {{isWhite ? 'hot-address-white' : ''}}">
+    <template wx:if="{{isWhite}}" is="icon" data="{{icon: '../../assets/img/location-active.png'}}" />
+    <template wx:if="{{!isWhite}}" is="icon" data="{{icon: '../../assets/img/location.png'}}" />
+    <text class="desc">{{address}}</text>
+  </view>
+</template>

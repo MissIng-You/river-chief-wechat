@@ -1,0 +1,47 @@
+/* tag component wxss */
+@import "../tag/tag.wxss";
+
+/* icon component wxss */
+@import "../icon/icon.wxss";
+
+/* hot-address component wxss */
+@import "./hot-address.wxss";
+
+/* hot-image component wxss */
+@import "./hot-image.wxss";
+
+/* hot wxss */
+.hot {
+  position: relative;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+/* hot hot-content */
+.hot .hot-content {
+  margin-left: 20rpx;
+}
+.hot-content .title {
+  font-weight: bold;
+  font-size: 1.4em;
+  max-width: 400rpx;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.hot-content .hot-tags-wrap {
+  padding: 10rpx 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+/* hot-mask */
+.hot .hot-mask {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 90rpx;
+  height: 90rpx;
+}

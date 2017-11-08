@@ -1,0 +1,23 @@
+/* card-divider wxss */
+.card-divider {
+  margin-left: 20rpx;
+  padding: 20rpx;
+  background-color: #46bde2;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  min-height: 100rpx;
+  border-radius: 5rpx;
+}
+.card-divider .card-left {
+  writing-mode: vertical-lr;
+  font-size: 1.2em;
+  padding-right: 20rpx;
+  border-right: 1px solid #fff;
+}
+
+.card-divider .card-right {
+  width: 180rpx;
+  font-size: 1.0em;
+  padding-left: 20rpx;
+}

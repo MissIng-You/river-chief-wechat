@@ -1,0 +1,9 @@
+<template name="card-title">
+  <view class="card-title">
+    <text class="title-theme">
+      <text>{{title}}</text>
+      <text class="title-mark">{{count}}</text>
+      <text>个</text>
+    </text>
+  </view>
+</template>

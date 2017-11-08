@@ -1,0 +1,11 @@
+<import src="../avator/avator.wxml" />
+
+<template name="hot-header">
+  <view class="hot-header">
+    <view class="hot-header-inner">
+      <text wx:if="{{title}}" class="title">{{title}}</text>
+      <template is="avator" data="{{title: avator.title, url: avator.url, wechatId: avator.wechatId, currentWechatId: avator.currentWechatId, classes: 'avator-small ' + avator.classes}}" />
+    </view>
+    <text class="timer">{{timer}}</text>
+  </view>
+</template>

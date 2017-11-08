@@ -1,0 +1,5 @@
+<template name="checkbox">
+  <label class="checkbox">
+    <checkbox color="#46bde2" value="{{key}}" checked="{{checked}}" />{{value}}
+  </label>
+</template>

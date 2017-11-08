@@ -1,0 +1,44 @@
+<!-- wxs -->
+<wxs module="navigation">
+  var chooseUrl = function (wechatId, currentUserWechatId) {
+    var pageUrl = undefined;
+    if(!wechatId || !currentUserWechatId) return '';
+    if(currentUserWechatId === wechatId) {
+      pageUrl = '../../pages/account/account?wechatId=';
+    } else {
+      pageUrl = '../../pages/account/other-account?wechatId=';
+    }
+    return pageUrl + wechatId;
+  };
+
+  var chooseOpenType = function(wechatId, currentUserWechatId) {
+    return currentUserWechatId === wechatId ? 'switchTab' : 'navigateTo';
+  };
+
+  var isNotExist = function (wechatId, currentUserWechatId) {
+    return !wechatId || !currentUserWechatId;
+  };
+
+  module.exports = {
+    chooseUrl: chooseUrl,
+    chooseOpenType: chooseOpenType,
+    isNotExist: isNotExist
+  }
+</wxs>
+
+<template name="avator">
+  <navigator wx:if="{{!navigation.isNotExist(wechatId, currentWechatId)}}"
+    url="{{navigation.chooseUrl(wechatId, currentWechatId)}}" 
+    data-wechat-id="{{wechatId}}" data-curr-wechat-id="{{currentWechatId}}"  
+    hover-class="navigator-hover"
+    open-type="{{navigation.chooseOpenType(wechatId, currentWechatId)}}" 
+    class="avator {{classes}}">
+    <image class="avator-img" src="{{url}}" mode="aspectFill"/>
+    <text wx:if="{{title}}" class="avator-title">{{title}}</text>
+  </navigator>
+  <view wx:if="{{navigation.isNotExist(wechatId, currentWechatId)}}"
+    class="avator {{classes}}">
+    <image class="avator-img" src="{{url}}" mode="aspectFill"/>
+    <text wx:if="{{title}}" class="avator-title">{{title}}</text>
+  </view>
+</template>

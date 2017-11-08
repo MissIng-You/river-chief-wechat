@@ -1,0 +1,5 @@
+/* checkbox wxss */
+.checkbox {
+  margin-right: 20rpx;
+  padding-bottom: 20rpx;
+}

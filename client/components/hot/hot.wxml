@@ -1,0 +1,25 @@
+<import src="../tag/tag.wxml" />
+<import src="../icon/icon.wxml" />
+<import src="./hot-address.wxml" />
+<import src="./hot-image.wxml" />
+
+<!-- wxs -->
+<wxs src="./hot-describe.wxs" module="hot" />
+
+<!-- template -->
+<template name="hot">
+  <navigator url="../../pages/problem-detail/problem-detail?id={{id}}&wechatId={{wechatId}}"
+    data-id="{{id}}" data-wechat-id="{{wechatId}}" hover-class="navigation-hover" class="hot">
+    <template is="hot-image" data="{{url: url, title: timer}}" />
+    <view class="hot-content">
+      <text class="title">{{title}}</text>
+      <view class="hot-tags-wrap">
+        <template is="tag-list" data="{{mainTag:hot.getMainTag(describe), tags: hot.getSubTag(describe)}}" />
+      </view>
+      <template is="hot-address" data="{{address: address}}" />
+    </view>
+    <view wx:if="{{solve}}" class="hot-mask">
+      <template is="icon" data="{{icon: '../../assets/img/solve-success.png', classes: 'icon-large'}}" />
+    </view>
+  </navigator>
+</template>

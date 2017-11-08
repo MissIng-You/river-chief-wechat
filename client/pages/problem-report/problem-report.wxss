@@ -1,0 +1,147 @@
+/* reset font-size wxss */
+html, body, page {
+  font-size: 62.5%;
+}
+
+/* icon component wxss */
+@import "../../components/icon/icon.wxss";
+
+/* radio component wxss */
+@import "../../components/radio/radio.wxss";
+
+/* checkbox component wxss */
+@import "../../components/checkbox/checkbox.wxss";
+
+/* hot-address component wxss */
+@import "../../components/hot/hot-address.wxss";
+
+/* problem-report wxss */
+.problem-report {
+  background-color: #efeff4;
+  margin-bottom: 150rpx;
+}
+/* problem-map */
+.problem-report .problem-map {
+  position: relative;
+  margin-bottom: 30rpx;
+}
+/* reset map default style */
+.problem-map map {
+  width: 100%;
+  height: 400rpx;
+}
+/* problem-map location */
+.problem-map .location {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding: 20rpx;
+  background-color: rgba(0, 0, 0, .5);
+}
+/* problem-item */
+.problem-report .problem-item {
+  background-color: #fff;
+  width: 100%;
+}
+/* problem-item zone */
+.problem-item .zone {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 75rpx;
+  font-size: 1.4em;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 10rpx 0;
+}
+.zone .label {
+  width: 25%;
+  padding-left: 20rpx;
+}
+.zone .input {
+  width: 75%;
+  padding-right: 20rpx;
+  color: #999999;
+  /* overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap; */
+}
+/* problem-type */
+.problem-report .problem-type {
+  background-color: #fff;
+  width: 100%;
+  font-size: 1.4em;
+  padding: 20rpx 0 20rpx 0;
+  display: flex;
+}
+.problem-type .label {
+  width: 25%;
+  padding-left: 20rpx;
+}
+.problem-type .input {
+  width: 75%;
+}
+/* problem-describe */
+.problem-report .problem-describe {
+  margin-top: 20rpx;
+  font-size: 1.4em;
+  background-color: #fff;
+}
+.problem-describe .describe {
+  padding: 30rpx 0 30rpx 20rpx;
+  border-bottom: 1px solid #e0e0e0;
+}
+.problem-describe .textarea {
+  margin: 20rpx 20rpx 0 20rpx;
+  width: 95%;
+  height: 200rpx;
+}
+/* problem-submit */
+.problem-report .problem-submit {
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+}
+.problem-submit .button-primary {
+  background-color: #46bde2;
+  color: #fff;
+  margin: 20rpx;
+  font-size: 1.6em;
+  letter-spacing: 5rpx;
+}
+
+/* radio-list/checkbox-list wxss */
+.radio-list,
+.checkbox-list {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+/* image-list wxss */
+.image-list {
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20rpx 0 0 20rpx;
+}
+/* image-item */
+.image-list .image-item {
+  width: 25%;
+}
+.image-list .image,
+.image-list .add-image {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 0 20rpx 20rpx 0;
+  padding: 1px;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
+}
+.image-list .add-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

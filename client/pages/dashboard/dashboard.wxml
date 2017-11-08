@@ -1,0 +1,59 @@
+<import src="../../components/avator/avator.wxml" />
+<import src="../../components/hot/hot.wxml" />
+<import src="../../components/hot/hot-header.wxml" />
+<import src="../../components/card/card.wxml" />
+<import src="../../components/card/card-empty.wxml" />
+<import src="../../components/icon/icon.wxml" />
+
+<view class="dashboard">
+  <swiper class="dashboard-swiper"
+    indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}"
+    indicator-active-color="{{indicatorActiveColor}}"
+    autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{attachements}}" wx:key="{{item.id}}">
+      <swiper-item class="slide-wrap">
+        <image src="{{item.url}}" mode="aspectFill" class="slide-img"/>
+        <text class="slide-title">{{item.title}}</text>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="dashboard-polling">
+    <template is="card-header" data="{{title: '本月护河大使', more: '更多'}}" />
+
+    <scroll-view scroll-x class="bg-white">
+      <view wx:if="{{ranks && ranks.length}}" class="avator-list">
+        <template is="avator" wx:for="{{ranks}}" wx:key="{{item.id}}"
+          data="{{ url: item.url, wechatId: item.id, currentWechatId: currentWechatId, classes: 'avator-large'}}" />
+      </view>
+      <template wx:if="{{!ranks || !ranks.length}}" 
+        is="card-empty" data="{{content: '没有排名记录!'}}" />
+    </scroll-view>
+  </view>
+
+  <view class="dashboard-scroll">
+    <template is="card-header" data="{{title: '热门问题上报', more: '更多'}}" />
+
+    <scroll-view scroll-y style="height: 320px;"
+      bindscrolltolower="refreshHotProblems" bindscrolltoupper="getNewHotProblems">
+      <view class="bg-light-white">
+        <block wx:if="{{pollingTops && pollingTops.length}}"
+          wx:for="{{pollingTops}}" wx:key="{{item.id}}">
+          <view class="hot-list">
+            <template is="hot-header" data="{{avator: {url: item.url, title: item.user, wechatId: item.wechatId, currentWechatId: currentWechatId}, timer: item.timer}}" />
+            <template is="hot" data="{{id: item.id, wechatId: item.wechatId, url: item.attachments && item.attachments[0].url,title: item.title,describe: item.describe, address: item.address, solve: item.solve}}" />
+          </view>
+        </block>
+        <template wx:if="{{!pollingTops || !pollingTops.length}}" 
+          is="card-empty" data="{{content: '没有热门上报!'}}" />
+      </view>
+    </scroll-view>
+    
+  </view>
+
+  <navigator class="add-report" hover-class="navigator-hover"
+    url="../../pages/problem-report/problem-report" > 
+    <template is="icon" 
+      data="{{icon: '../../assets/img/add-empty.png', classes: 'icon-normal'}}" />
+  </navigator>
+</view>
