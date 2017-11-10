@@ -15,29 +15,13 @@ html, body, page {
 /* hot-address component wxss */
 @import "../../components/hot/hot-address.wxss";
 
+/* hot-image component wxss */
+@import "../../components/hot/hot-image.wxss";
+
 /* problem-report wxss */
 .problem-report {
   background-color: #efeff4;
   margin-bottom: 150rpx;
-}
-/* problem-map */
-.problem-report .problem-map {
-  position: relative;
-  margin-bottom: 30rpx;
-}
-/* reset map default style */
-.problem-map map {
-  width: 100%;
-  height: 400rpx;
-}
-/* problem-map location */
-.problem-map .location {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  padding: 20rpx;
-  background-color: rgba(0, 0, 0, .5);
 }
 /* problem-item */
 .problem-report .problem-item {
@@ -127,12 +111,8 @@ html, body, page {
   flex-wrap: wrap;
   padding: 20rpx 0 0 20rpx;
 }
-/* image-item */
-.image-list .image-item {
-  width: 25%;
-}
-.image-list .image,
-.image-list .add-image {
+/* reset hot-image components */
+.image-list .hot-image {
   width: 150rpx;
   height: 150rpx;
   margin: 0 20rpx 20rpx 0;
@@ -140,7 +120,18 @@ html, body, page {
   border: 1px solid #e0e0e0;
   border-radius: 3px;
 }
+.image-list .hot-image .image {
+  width: 150rpx;
+  height: 150rpx;
+}
+/* add-image */
 .image-list .add-image {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 0 20rpx 20rpx 0;
+  padding: 1px;
+  border: 1px solid #e0e0e0;
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;

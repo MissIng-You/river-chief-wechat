@@ -9,7 +9,7 @@
 <import src="../../components/icon/icon.wxml" />
 
 <!-- wxs -->
-<wxs src="../../components/hot/hot-describe.wxs" module="hot" />
+<wxs src="../../components/hot/hot-describe.wxs" module="hotDescribe" />
 
 <view class="problem">
   <template is="hot-image" 
@@ -18,9 +18,13 @@
   <view class="problem-detail">
     <template is="hot-header" data="{{title: '问题描述', avator: {url: details.url, title: details.user, classes: 'avator-xsmall'}, timer: details.timer}}" />
     <view class="tags-wrap">
-      <template is="tag-list" data="{{mainTag:hot.getMainTag(details.describe), tags: hot.getSubTag(details.describe)}}" />
+      <view class="hot-tags">
+        <template is="tag" data="{{value: hotDescribe.getMainTag(details.describe)}}" />
+        <template is="tag" wx:for="{{hotDescribe.getSubTag(details.describe)}}" wx:key="{{index}}"
+          data="{{value: item, classes: 'tag-divider'}}" /> 
+      </view>
     </view>
-    <text class="content">{{hot.getDescribe(details.describe)}}</text>
+    <text class="content">{{hotDescribe.getDescribe(details.describe)}}</text>
     <view class="image-list-wrap">
       <scroll-view scroll-x class="bg-white">
         <view class="image-list">

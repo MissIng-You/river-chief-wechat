@@ -86,6 +86,7 @@ Page({
     getAreas: config.service.getAreas,
     getReaches: config.service.getReaches,
     uploadUrl: config.service.uploadUrl,
+    uploadVideoUrl: config.service.uploadVideoUrl,
 
     // 常量信息
     cities: config.constant.cities,
@@ -276,8 +277,27 @@ Page({
     });
   },
 
-  // 上传图片
+  // 选择上传图片还是上传小视频
   doUpload() {
+    var that = this;
+
+    wx.showActionSheet({
+      itemList: ['选择图片', '选择视频'],
+      success: function(result) {
+        if(result.tapIndex === 0) {
+          that.chooseImage();
+        } else {
+          that.chooseVideo();
+        }
+      },
+      fail: function (error) {
+        // wechat.fail('wx.showActionSheet失败.');
+      }
+    });
+  },
+
+  // 上传图片
+  chooseImage() {
     var that = this
 
     wx.chooseImage({
@@ -295,7 +315,11 @@ Page({
           success: function (res) {
             wechat.success('上传图片成功');
             res = JSON.parse(res.data);
-
+            
+            if (res.IsError) {
+              return wechat.fail(res.Message || '服务器异常.');
+            }
+          
             var previewUrls = that.data.previewUrls.slice(0);
             previewUrls.push(res.Data.AbsoluteUrl);
 
@@ -315,6 +339,52 @@ Page({
       },
       fail: function (error) {
         wechat.fail('选择图片失败!');
+      }
+    });
+  },
+
+  // 上传视频
+  chooseVideo() {
+    var that = this
+
+    wx.chooseVideo({
+      maxDuration: 60,
+      sourceType: ['album', 'camera'],
+      success: function (res) {
+        var filePath = res.tempFilePath;
+        wechat.loading();
+        wx.uploadFile({
+          url: that.data.uploadVideoUrl,
+          filePath: filePath,
+          name: 'file',
+
+          success: function (res) {
+            wechat.success('上传视频成功');
+            res = JSON.parse(res.data);
+
+            if(res.IsError) {
+              return wechat.fail(res.Message || '服务器异常.');
+            }
+
+            var previewUrls = that.data.previewUrls.slice(0);
+            previewUrls.push(res.Data.AbsoluteUrl);
+
+            var tempFileUrls = that.data.fileUrls.slice(0);
+            tempFileUrls.push(res.Data.RelativeUrl);
+
+            that.setData({
+              previewUrls: previewUrls,
+              fileUrls: tempFileUrls
+            });
+          },
+
+          fail: function (error) {
+            wechat.fail('图片上传失败，请重新上传!');
+          }
+        });
+      },
+      fail: function (error) {
+        wechat.fail('选择视频失败!');
       }
     });
   },

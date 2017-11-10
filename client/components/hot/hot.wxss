@@ -24,7 +24,7 @@
 }
 .hot-content .title {
   font-weight: bold;
-  font-size: 1.4em;
+  font-size: 1.5em;
   max-width: 400rpx;
   display: inline-block;
   overflow: hidden;

@@ -113,9 +113,12 @@ Page({
 
     // 当前授权用户Id
     currentWechatId: undefined,
+    windowHeight: 0,
+    loading: false,
 
     // 当前页索引
     pageIndex: 1,
+    totalPage: 1,
 
     // Top10 Ranks
     ranks: [],
@@ -133,16 +136,16 @@ Page({
     // attachements
     attachements: [{
       id: 1,
-      url: 'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      title: '[砥砺奋进.五周年]民间河长治水记.'
+      url: 'http://171.221.202.126:30002/Image/Static/20171110/river.jpg',
+      title: '青山绿水就是金山银山.'
     }, {
         id: 2,
-        url: 'http://www.henan100.com/d/file/news/gn/now/20170518/29360e6d26da7516833b0957690bcebb.jpg',
-        title: '[Follow Me Network] Middle.'
+        url: 'http://171.221.202.126:30002/Image/Static/20171110/people.jpg',
+        title: '高新区开展清理江安河垃圾志愿服务.'
     }, {
         id: 3,
-        url: 'http://n.sinaimg.cn/hb/transform/20170717/cBEo-fyiavtv8781967.jpg',
-      title: 'Dahsboard KB background.'
+        url: 'http://171.221.202.126:30002/Image/Static/20171110/panel.jpg',
+        title: '彭山区岷江河长公示牌.'
     }],
     indicatorDots: true,
     autoplay: true,
@@ -212,7 +215,10 @@ Page({
       });
     }
     
-    this.setData({pollingTops: orignalProblems});
+    this.setData({
+      pollingTops: orignalProblems,
+      loading: false
+    });
     // 保存问题列表Storage
     wx.setStorageSync(constants.RCW_PROBLEM_LIST, orignalProblems);
   },
@@ -241,6 +247,10 @@ Page({
         wechat.success('请求成功完成');
         console.log('request success', result);
         var problemList = mapFieldsOfGetHotProblems(result.data.PageData);
+        //设置总页数
+        that.setData({
+          totalPage: result.data.TotalPage
+        });
         // 格式化时间
         var problemListOfFormat = problemList.map(item => {
           var temp = item;
@@ -340,6 +350,15 @@ Page({
     });
   },
 
+  onLoad() {
+    var that = this;
+
+    wechat.getSystem(function(system) {
+      console.log(system);
+      that.setData({windowHeight: system.windowHeight});
+    });
+  },
+
   onReady() {
     // 微信登录授权
     setTimeout(this.doLogin, 100);
@@ -351,29 +370,31 @@ Page({
     setTimeout(this.getHotProblems, 100);
   },
 
-  // 上拉获取最新
-  getNewHotProblems(event) {
-    var that = this;
-    
-    // 获取热门问题上报
-    utils.throttle(function() {
-      that.setData({ pageIndex: 1 });
-      that.getHotProblems();
-    }, 1000);
+  // 刷新热门问题
+  _refreshHotProblems(isScrollUp) {
+    var pageIndex = this.data.pageIndex;
+    var totalPage = this.data.totalPage;
+    var loading = this.data.loading;
+
+    if (!!loading || totalPage <= pageIndex + 1) return;
+    this.setData({
+      pageIndex: isScrollUp ? 1 : ++pageIndex,
+      loading: true
+    });
+    this.getHotProblems();
   },
 
-  // 下拉刷新
+  // 上拉获取最新 热门问题上报
+  getNewHotProblems(event) {
+    var that = this;
+
+    utils.throttle(that._refreshHotProblems, 5000)(true);
+  },
+
+  // 下拉刷新 热门问题上报
   refreshHotProblems(event) {
     var that = this;
-    var getProblem = function() {
-      var pageIndex = that.data.pageIndex;
-      that.setData({ pageIndex: ++pageIndex });
-      that.getHotProblems();
-    };
 
-    console.log(event);
-
-    // 获取热门问题上报
-    utils.throttle(getProblem, 1000)();
-  }
+    utils.throttle(that._refreshHotProblems, 2000)(false);
+  },
 })

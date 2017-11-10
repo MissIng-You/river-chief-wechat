@@ -6,7 +6,7 @@
   color: #999;
   display: flex;
   align-content: center; 
-  font-size: 1.0em;
+  font-size: 1.1em;
 }
 .hot-address .desc {
   display: inline-block; 

@@ -5,7 +5,10 @@
 <import src="../../components/card/card-empty.wxml" />
 <import src="../../components/icon/icon.wxml" />
 
-<view class="dashboard">
+<scroll-view class="dashboard" scroll-y style="height: {{windowHeight}}px;"
+  enable-back-to-top="true" scroll-with-animation="true"
+  lower-threshold="{{windowHeight / 4}}" upper-threshold="{{windowHeight / 4}}"
+  bindscrolltolower="refreshHotProblems" bindscrolltoupper="getNewHotProblems">
   <swiper class="dashboard-swiper"
     indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}"
     indicator-active-color="{{indicatorActiveColor}}"
@@ -34,20 +37,17 @@
   <view class="dashboard-scroll">
     <template is="card-header" data="{{title: '热门问题上报', more: '更多'}}" />
 
-    <scroll-view scroll-y style="height: 320px;"
-      bindscrolltolower="refreshHotProblems" bindscrolltoupper="getNewHotProblems">
-      <view class="bg-light-white">
-        <block wx:if="{{pollingTops && pollingTops.length}}"
-          wx:for="{{pollingTops}}" wx:key="{{item.id}}">
-          <view class="hot-list">
-            <template is="hot-header" data="{{avator: {url: item.url, title: item.user, wechatId: item.wechatId, currentWechatId: currentWechatId}, timer: item.timer}}" />
-            <template is="hot" data="{{id: item.id, wechatId: item.wechatId, url: item.attachments && item.attachments[0].url,title: item.title,describe: item.describe, address: item.address, solve: item.solve}}" />
-          </view>
-        </block>
-        <template wx:if="{{!pollingTops || !pollingTops.length}}" 
-          is="card-empty" data="{{content: '没有热门上报!'}}" />
-      </view>
-    </scroll-view>
+    <view class="bg-light-white">
+      <block wx:if="{{pollingTops && pollingTops.length}}"
+        wx:for="{{pollingTops}}" wx:key="{{item.id}}">
+        <view class="hot-list">
+          <template is="hot-header" data="{{avator: {url: item.url, title: item.user, wechatId: item.wechatId, currentWechatId: currentWechatId}, timer: item.timer}}" />
+          <template is="hot" data="{{id: item.id, wechatId: item.wechatId, url: item.attachments && item.attachments[0].url,title: item.title,describe: item.describe, address: item.address, solve: item.solve}}" />
+        </view>
+      </block>
+      <template wx:if="{{!pollingTops || !pollingTops.length}}" 
+        is="card-empty" data="{{content: '没有热门上报!'}}" />
+    </view>
     
   </view>
 
@@ -56,4 +56,4 @@
     <template is="icon" 
       data="{{icon: '../../assets/img/add-empty.png', classes: 'icon-normal'}}" />
   </navigator>
-</view>
+</scroll-view>

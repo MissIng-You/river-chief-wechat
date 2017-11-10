@@ -58,6 +58,7 @@ var mapFieldsOfGetMyProblems = function (result) {
     'Nickname': 'user',
     'FullAddress': 'address',
     'QuestionDescribe': 'describe',
+    'State': 'solve',
     'RiverName': 'title',
     'CreateTime': 'timer',
     'FileList': 'attachments',

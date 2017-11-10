@@ -104,6 +104,7 @@ Page({
   _getProblem(sessionKey) {
     var problemList = wx.getStorageSync(sessionKey);
     var curProblem = problemList && problemList.filter(item => item.id === this.data.id);
+    console.log(curProblem);
     if (curProblem && curProblem.length >= 1) {
       this.setData({ details: curProblem[0] });
       return true;
@@ -170,7 +171,7 @@ Page({
     });
 
     // 获取问题项
-    setTimeout(this.getProblem, 100);
+    setTimeout(this.getProblem, 0);
 
     // 获取问题详情
     setTimeout(this.getProblemDetails, 100);

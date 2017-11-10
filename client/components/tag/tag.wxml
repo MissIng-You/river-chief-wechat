@@ -1,8 +1,16 @@
+<template name="tag">
+  <text class="tag {{classes}}">{{value || 'No Content'}}</text>
+</template>
+
 <template name="tag-list">
-  <view class="hot-tags {{classes}}">
-    <text class="tag">{{mainTag}}</text>
-    <block wx:for="{{tags}}" wx:key="{{item}}">
-      <text class="tag tag-divider">{{item}}</text>
-    </block>
+  <view class="hot-tags">
+    <template is="tag" data="{{value: mainTag}}" />
+    <template is="tag" wx:if="{{tags && tags.length > 0}}" data="{{value: tags[0], classes: 'tag-divider'}}" />
+    <template is="tag"  wx:if="{{tags && tags.length > 1}}" data="{{value: tags[1], classes: 'tag-divider'}}" />
+    <template is="tag"  wx:if="{{tags && tags.length > 2}}" data="{{value: tags[2], classes: 'tag-divider'}}" />
+    <template is="tag"  wx:if="{{tags && tags.length > 3}}" data="{{value: tags[3], classes: 'tag-divider'}}" />
+    <template is="tag"  wx:if="{{tags && tags.length > 4}}" data="{{value: tags[4], classes: 'tag-divider'}}" />
+    <!-- <template is="tag" wx:for="{{tags}}" wx:key="{{index}}"
+      data="{{value: item, classes: 'tag-divider'}}" /> -->
   </view>
 </template>

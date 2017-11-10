@@ -61,6 +61,7 @@ html, body, page {
   justify-content: flex-start;
 }
 .problem-detail .content {
+  display: inline-block;
   font-size: 1.4em;
   padding: 0 20rpx;
 }

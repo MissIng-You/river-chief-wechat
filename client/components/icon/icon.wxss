@@ -19,3 +19,9 @@
   width: 75rpx;
   height: 75rpx;
 }
+
+/* icon-large */
+.icon.icon-xlarge .icon-inner {
+  width: 120rpx;
+  height: 120rpx;
+}

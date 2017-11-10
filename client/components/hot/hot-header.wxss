@@ -17,14 +17,14 @@
   justify-content: flex-start;
 } 
 .hot-header .title {
-  font-size: 1.4em;
+  font-size: 1.5em;
   padding-right: 20rpx;
   margin-right: 10rpx;
   border-right: 1px solid #e0e0e0;
 }
 .hot-header .timer {
   color: #999;
-  font-size: 1.0em;
+  font-size: 1.2em;
   line-height: 60rpx;
   overflow: hidden;
   text-overflow: ellipsis;

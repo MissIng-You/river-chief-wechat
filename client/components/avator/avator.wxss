@@ -8,7 +8,7 @@
   background-color:#e0e0e0;
 }
 .avator .avator-title {
-  font-size: 1.4em;
+  font-size: 1.5em;
   line-height: 100rpx;
   color: #353535;
   margin-left: 10rpx;
@@ -57,5 +57,5 @@
 }
 .avator.avator-xsmall .avator-title {
   line-height: 40rpx;
-  font-size: 1.0em;
+  font-size: 1.2em;
 }

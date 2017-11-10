@@ -4,22 +4,27 @@
 <import src="./hot-image.wxml" />
 
 <!-- wxs -->
-<wxs src="./hot-describe.wxs" module="hot" />
+<wxs src="./hot-describe.wxs" module="hotDescribe" />
 
 <!-- template -->
 <template name="hot">
   <navigator url="../../pages/problem-detail/problem-detail?id={{id}}&wechatId={{wechatId}}"
     data-id="{{id}}" data-wechat-id="{{wechatId}}" hover-class="navigation-hover" class="hot">
-    <template is="hot-image" data="{{url: url, title: timer}}" />
+    <template is="hot-image" data="{{url: url, title: timer, isFit: true}}" />
     <view class="hot-content">
       <text class="title">{{title}}</text>
       <view class="hot-tags-wrap">
-        <template is="tag-list" data="{{mainTag:hot.getMainTag(describe), tags: hot.getSubTag(describe)}}" />
+        <!-- <template is="tag-list" data="{{mainTag:hotDescribe.getMainTag(describe), tags: hotDescribe.getSubTag(describe)}}" /> -->
+        <view class="hot-tags">
+          <template is="tag" data="{{value: hotDescribe.getMainTag(describe)}}" />
+          <template is="tag" wx:for="{{hotDescribe.getSubTag(describe)}}" wx:key="{{index}}"
+            data="{{value: item, classes: 'tag-divider'}}" /> 
+        </view>
       </view>
       <template is="hot-address" data="{{address: address}}" />
     </view>
     <view wx:if="{{solve}}" class="hot-mask">
-      <template is="icon" data="{{icon: '../../assets/img/solve-success.png', classes: 'icon-large'}}" />
+      <template is="icon" data="{{icon: '../../assets/img/solve-success.png', classes: 'icon-xlarge'}}" />
     </view>
   </navigator>
 </template>

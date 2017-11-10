@@ -65,19 +65,62 @@ var prelogin = function(callback) {
   });
 };
 
-// wechat.preview 预览图片
+// wechat.getClientHeight 获取屏幕高度
+var getSystem = function (callback) {
+  wx.getSystemInfo({
+    success: function(result) {
+      callback && callback(result);
+    },
+    fail: function(error) {
+      fail('获取getSystemInfo失败');
+    }
+  });
+};
+
+/* wechat.preview 预览图片/视频 */
+
+// 判断图片
+var isImage = function (value) {
+  var imageRE = new RegExp('^(\.\.\/|https?).+\.(gif|jpg|jpeg|png|bmp)$', 'i');
+  return value && imageRE.test(value);
+};
+
+// 判断视频
+var isVideo = function (value) {
+  var videoRE = new RegExp('^https?.+\.(mp4|swf|avi|flv|mpg|rm|mov|wav|asf|3gp|mkv|rmvb)$', 'i');
+  return value && videoRE.test(value);
+};
+
+// 预览图片/视频
 var preview = function (event) {
   var dataset = event.currentTarget.dataset;
   var url = dataset.url;
   var urls = dataset.urls;
+  var id = event.currentTarget.id || event.target.id;
 
-  var previewUrls = urls && urls.map(item => {
-    if(typeof item === 'string') return item;
-    return item.url;
+  // 预览视频
+  if(id && isVideo(url)) {
+    var videoContext = wx.createVideoContext(id);
+    videoContext.requestFullScreen();
+    videoContext.play();
+    return;
+  }
+
+  var previewUrls = [];
+  urls && urls.forEach(item => {
+    var temp = undefined;
+    if(typeof item === 'string' && isImage(item)) {
+      temp = item;
+    } else if (typeof item === 'object' && isImage(item.url)) {
+      temp = item.url;
+    }
+    temp && previewUrls.push(temp);
   });
+
   if (!url || !previewUrls || !previewUrls.length) {
     return fail(`${url || ''}图片预览失败.`);
   }
+  
   wx.previewImage({
     current: url,
     urls: previewUrls
@@ -91,5 +134,6 @@ module.exports = {
   setUserInfo: setUserInfo,
   getUserInfo: getUserInfo,
   prelogin: prelogin,
+  getSystem: getSystem,
   preview: preview
 }

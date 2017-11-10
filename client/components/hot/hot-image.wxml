@@ -1,7 +1,36 @@
+<!-- wxs -->
+ <wxs module="urlAddress">
+  var isImage = function(value) {
+    var imageRE = getRegExp('^(\.\.\/|https?).+\.(gif|jpg|jpeg|png|bmp)$', 'i');
+    return value && imageRE.test(value);
+  };
+
+  var isVideo = function (value) {
+    var videoRE = getRegExp('^https?.+\.(mp4|swf|avi|flv|mpg|rm|mov|wav|asf|3gp|mkv|rmvb)$', 'i');
+    return value && videoRE.test(value);
+  };
+
+  var createVideoId = function (value) {
+    var splitRE = getRegExp('(\/|\\)', 'g');
+    var videoId = value.replace(splitRE, '_') + Date.now();
+    return videoId;
+  };
+
+  module.exports = {
+    isImage: isImage,
+    isVideo: isVideo,
+    createVid: createVideoId
+  }
+</wxs> 
+
 <template name="hot-image">
   <view data-urls="{{urls}}" data-url="{{url}}" bindtap="preview"
     class="{{isBackground ? 'hot-image-bg' : 'hot-image'}}">
-    <image class="image" src="{{url}}" lazy-load="true" mode="aspectFill"/>
+    <image wx:if="{{urlAddress.isImage(url)}}" class="image" src="{{url}}" lazy-load="true" mode="aspectFill"/>
+    <image wx:if="{{urlAddress.isVideo(url) && isFit}}" class="image" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510229698560&di=4469a56b4cf2d7d8005903f04a83218c&imgtype=0&src=http%3A%2F%2Fpic1.16pic.com%2F00%2F03%2F34%2F16pic_334875_b.jpg" lazy-load="true" mode="aspectFill"/>
+     <video wx:if="{{urlAddress.isVideo(url) && !isFit}}" id="{{urlAddress.createVid(url)}}" 
+      poster="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1510229698560&di=4469a56b4cf2d7d8005903f04a83218c&imgtype=0&src=http%3A%2F%2Fpic1.16pic.com%2F00%2F03%2F34%2F16pic_334875_b.jpg"
+      class="image" src="{{url}}" controls></video>   
     <text wx:if="{{title}}" class="title">{{title}}</text>
   </view>
 </template>

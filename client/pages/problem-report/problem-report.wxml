@@ -2,6 +2,7 @@
 <import src="../../components/radio/radio.wxml" />
 <import src="../../components/checkbox/checkbox.wxml" />
 <import src="../../components/hot/hot-address.wxml" />
+<import src="../../components/hot/hot-image.wxml" />
 
 <!-- wxs -->
 <wxs module="validation">
@@ -20,12 +21,6 @@
 
 <scroll-view soroll-y class="problem-report">
   <form bindsubmit="onSubmit">
-    <!-- <view class="problem-map">
-      <map id="map" longitude="104.06613" latitude="30.5721" scale="16" controls="{{controls}}" bindcontroltap="controltap" markers="{{markers}}" bindmarkertap="markertap" polyline="{{polyline}}" bindregionchange="regionchange" show-location></map>
-      <view class="location">
-        <template is="hot-address" data="{{address: address, isWhite: true}}" />
-      </view>
-    </view> -->
     <view class="problem-item">
       <view class="zone">
         <text class="label">选择位置</text>
@@ -60,18 +55,22 @@
     </view>
     <view class="problem-describe">
       <view class="describe">问题描述</view>
-      <textarea name="selectDescribe" class="textarea" maxlength="200" placeholder="输入问题描述，不超过200字（非必填）" />
+      <textarea name="selectDescribe" class="textarea" maxlength="200" 
+        placeholder="输入问题描述，不超过200字（非必填）" />
     </view>
     <view class="image-list">
       <view wx:if="{{previewUrls && previewUrls.length <= 3}}" class="add-image" bindtap="doUpload">
         <template is="icon" data="{{icon: '../../assets/img/add-empty.png', classes: 'icon-large'}}" />
       </view>
-      <block wx:for="{{previewUrls}}" wx:key="{{item}}">
+      <template wx:for="{{previewUrls}}" wx:key="{{item}}"
+        is="hot-image" data="{{ url: item, urls: previewUrls }}" />
+      <!-- <block wx:for="{{previewUrls}}" wx:key="{{item}}">
         <view class="image-item" bindtap="preview"
           data-urls="{{previewUrls}}" data-url="{{item}}">
+          
           <image class="image" src="{{item}}" mode="aspectFill" />
         </view>
-      </block>
+      </block> -->
     </view>
     <view class="problem-submit">
       <button form-type="submit" class="button-primary">确定</button>

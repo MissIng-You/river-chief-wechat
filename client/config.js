@@ -32,8 +32,9 @@ var config = {
         // 上传图片接口
         // uploadUrl: `${host}/weapp/upload`,
 
-        // api服务器图片接口
+        // api服务器图片/视频接口
         uploadUrl: `${apiHost}/Common/UploadFile?accessToken=''&fileType=0`,
+        uploadVideoUrl: `${apiHost}/Common/UploadFile?accessToken=''&fileType=1`,
 
         // 获取本月护河大使Top10
         getRanks: `${apiHost}/WeChat/GetRankOfThisMonthList`,
